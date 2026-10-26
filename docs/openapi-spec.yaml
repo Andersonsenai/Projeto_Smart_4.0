@@ -1,1 +1,23 @@
-
+openapi: 3.0.3
+info:
+  title: API Aplicação Web Industrial - Planta N2
+  version: 1.0.0
+paths:
+  /admin-data:
+    get:
+      summary: Rota restrita para administradores
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Acesso liberado
+        '401':
+          description: Token ausente, expirado ou inválido
+        '403':
+          description: Perfil sem permissão (RBAC)
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
